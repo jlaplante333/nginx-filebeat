@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  ####################### Keycloak Definition #######################
+  nginx-angular:
+    restart: always
+    container_name: nginx-angular
+    build:
+      context: angular
+    ports:
+      - 8080:8080
+    networks:
+      - nginxfb
+
+####################### Networks Definition #######################
+networks:
+  nginxfb:
+    driver: "bridge"
