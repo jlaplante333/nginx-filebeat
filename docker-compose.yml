@@ -12,7 +12,7 @@ services:
     networks:
       - nginxfb
     volumes:
-      - nginxlog:/var/log/nginx
+      - ./logs:/var/log/nginx
 
   filebeat:
     restart: always
@@ -22,7 +22,7 @@ services:
     networks:
       - nginxfb
     volumes:
-      - nginxlog:/usr/share/filebeat/nginx
+      - ./logs:/usr/share/filebeat/nginx
 ####################### Networks Definition #######################
 volumes:
     nginxlog:
