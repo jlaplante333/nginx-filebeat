@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-  ####################### Keycloak Definition #######################
+
   nginx-angular:
     restart: always
     container_name: nginx-angular
@@ -11,8 +11,21 @@ services:
       - 8080:8080
     networks:
       - nginxfb
+    volumes:
+      - nginxlog:/var/log/nginx
 
+  filebeat:
+    restart: always
+    container_name: filebeat
+    build:
+      context: filebeat
+    networks:
+      - nginxfb
+    volumes:
+      - nginxlog:/usr/share/filebeat/nginx
 ####################### Networks Definition #######################
+volumes:
+    nginxlog:
 networks:
   nginxfb:
     driver: "bridge"
